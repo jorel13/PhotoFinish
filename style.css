@@ -1,0 +1,32 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+button {
+    border: 0;
+    background-color: rgba(0, 94, 255, 1);
+    color: #eee;  
+    padding: 5px 10px;
+    font-weight: bold;
+}
+
+button:hover {
+    box-shadow: inset 0px -4px 0px 0px #aaa;
+}
+
+input {
+    height: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.controls-container {
+    margin-bottom: 10px;
+}
+
+#dump {
+    height: 400px;
+    overflow-y: auto;
+}

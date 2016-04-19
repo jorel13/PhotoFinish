@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Photo finish</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js"></script>
+</head>
+
+<body>
+
+    <div class="controls-container">
+        <h3>Photo Finish</h3>
+        <button id="start">Start!</button>
+        <button id="stop">Stop!</button>
+        <button id="clear">Clear Results</button>
+        <input type="text" id="threshold" placeholder="Detection Threshold" />
+        <input type="text" id="posX" placeholder="Detection X Position" />
+        <input type="text" id="areaWidth" placeholder="Detection Width" />
+        <button id="update">Update</button>
+    </div>
+
+    <div class="">
+        <video class="hidden" id="videoSource" width="640" height="360"></video>
+        <canvas class="" id="canvasSource" width="640" height="360"></canvas>
+        <canvas class="hidden" id="canvasBlend" width="640" height="360"></canvas>
+        <canvas class="hidden" id="canvasSnapShot" width="640" height="360"></canvas>
+    </div>
+    <div id="dump"></div>
+
+</body>
+
+</html>
