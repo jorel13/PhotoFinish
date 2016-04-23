@@ -5,9 +5,9 @@
     nav.getUserMedia = nav.getUserMedia || nav.oGetUserMedia || nav.msGetUserMedia || nav.mozGetUserMedia || nav.webkitGetUserMedia;
 
     // Setup shared variables
-    var video, width, height, sourceContext, blendContext, timeout, lastImageData, dump;
+    var video, width, height, sourceContext, blendContext, timeout, lastImageData, dump, sourceCanvas;
     var areaWidth = 40, posY = 0, posX = 0, threshold = 10;
-    var frame = 0;
+    var framesPerSecond = 1000/60;
         
     /**
      * Function that does all our setup tasks
@@ -20,7 +20,7 @@
         height = video.height;
         
         // Set up our source canvas that copies the video stream        
-        var sourceCanvas = doc.getElementById("canvasSource");
+        sourceCanvas = doc.getElementById("canvasSource");
         sourceContext = sourceCanvas.getContext("2d");
         
         // Set up the canvas we will use to calculate differences
@@ -93,6 +93,11 @@
                 posX = Number(posXInput.value) - (areaWidth / 2);
             }
         });
+		
+		var hideShowButton = doc.getElementById("hideShow");
+        hideShowButton.addEventListener("click", function() {
+            sourceCanvas.classList.toggle("hidden");
+        });
     }    
 
 
@@ -101,7 +106,7 @@
      * in order to refresh fast enough to capture motion.
      */
     function update() {
-        frame++;
+		
         // Take a picture
         draw();
         
@@ -112,7 +117,7 @@
         checkAreas();
         
         // Play it again, Sam!
-        timeout = setTimeout(update, 1000/60);
+        timeout = setTimeout(update, framesPerSecond);
     }
     
     /**
@@ -174,7 +179,7 @@
      * another canvas.
      */
     function blend() {
-        console.log("blend - " + frame);
+        
         // Take the current webcam image data
         var sourceData = sourceContext.getImageData(0, 0, width, height);
         
@@ -201,7 +206,7 @@
      * black we know that there was a change that took place.
      */
     function checkAreas() {
-        console.log("check - " + frame);
+        
         // Get the pixels in the detection area from the blended image
         var blendedData = blendContext.getImageData(
             posX,
